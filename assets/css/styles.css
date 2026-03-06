@@ -31,11 +31,35 @@ h1, h2, h3, h4, h5 {
   color: var(--teal);
 }
 
+.nav-logo {
+  height: clamp(44px, 6vw, 100px);
+  width: auto;
+  display: block;
+}
+
 .glass-nav {
   background: rgba(8, 16, 32, 0.82);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+.navbar {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav .nav-link {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
 
 .glass-nav .nav-link,
 .glass-nav .navbar-brand {
@@ -383,6 +407,7 @@ h1, h2, h3, h4, h5 {
 
 .pill-row span {
   background: #f1f5f9;
+  color: black;
   padding: 8px 12px;
   border-radius: 999px;
   font-size: 0.9rem;
