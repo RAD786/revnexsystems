@@ -1,15 +1,27 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const ROOT_HOSTS = new Set([
   "revnexsystems.com",
   "revnexsystems.ai"
 ]);
+const ROUTES = {
+  "/": "index.html",
+  "/aesthetiq": "aesthetiq.html",
+  "/how-it-works": "how-it-works.html",
+  "/pricing": "pricing.html",
+  "/book-demo": "book-demo.html",
+  "/contact": "contact.html"
+};
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -21,6 +33,17 @@ app.use((req, res, next) => {
     }
   }
   return next();
+});
+app.get(Object.keys(ROUTES), (req, res) => {
+  const file = ROUTES[req.path];
+  return res.sendFile(path.join(__dirname, file));
+});
+app.get(Object.values(ROUTES).map((file) => `/${file}`), (req, res) => {
+  const target = Object.entries(ROUTES).find(([, file]) => `/${file}` === req.path);
+  if (target) {
+    return res.redirect(301, target[0]);
+  }
+  return res.redirect(301, "/");
 });
 app.use(express.static("."));
 
