@@ -6,8 +6,22 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const ROOT_HOSTS = new Set([
+  "revnexsystems.com",
+  "revnexsystems.ai"
+]);
 
 app.use(express.json());
+app.use((req, res, next) => {
+  const host = req.headers.host || "";
+  if (host.startsWith("www.")) {
+    const rootHost = host.replace(/^www\./, "");
+    if (ROOT_HOSTS.has(rootHost)) {
+      return res.redirect(301, `https://${rootHost}${req.originalUrl}`);
+    }
+  }
+  return next();
+});
 app.use(express.static("."));
 
 const transporter = nodemailer.createTransport({
