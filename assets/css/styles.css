@@ -491,6 +491,37 @@ h1, h2, h3, h4, h5 {
   height: 100%;
 }
 
+.legal-shell {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.legal-card {
+  background: #fff;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.legal-card h2 {
+  margin-top: 28px;
+  font-size: 1.35rem;
+}
+
+.legal-card h2:first-child {
+  margin-top: 0;
+}
+
+.legal-card p,
+.legal-card li {
+  color: #334155;
+}
+
+.legal-card ul {
+  padding-left: 20px;
+  margin-bottom: 0;
+}
+
 .calendly-embed {
   background: #fff;
   padding: 16px;

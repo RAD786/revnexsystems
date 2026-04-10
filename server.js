@@ -20,7 +20,9 @@ const ROUTES = {
   "/how-it-works": "how-it-works.html",
   "/pricing": "pricing.html",
   "/book-demo": "book-demo.html",
-  "/contact": "contact.html"
+  "/contact": "contact.html",
+  "/privacy-policy": "privacy-policy.html",
+  "/terms-and-conditions": "terms-and-conditions.html"
 };
 
 app.use(express.json());
